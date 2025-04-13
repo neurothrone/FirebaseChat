@@ -30,15 +30,27 @@
 
     private List<Message> _messages = [];
     private string _newMessage = string.Empty;
+    private bool _hasLoadedMessages = false;
 
     protected override async Task OnInitializedAsync()
     {
         await LoadMessages();
+        FirebaseHelper.SubscribeToMessages(OnMessageReceived);
     }
 
     private async Task LoadMessages()
     {
+        if (_hasLoadedMessages)
+            return;
+    
         _messages = await FirebaseHelper.GetMessagesAsync();
+        Console.WriteLine($"Loaded {_messages.Count} messages");
+        _hasLoadedMessages = true;
+    }
+
+    private void OnMessageReceived(Message message)
+    {
+        _messages.Add(message);
     }
 
     private async Task SendMessage()
@@ -53,8 +65,6 @@
         };
         await FirebaseHelper.SendMessageAsync(message);
         _newMessage = string.Empty;
-        
-        await LoadMessages();
     }
 
 }

@@ -1,5 +1,6 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
+using Firebase.Database.Streaming;
 
 namespace FirebaseChat.Persistence.Firebase;
 
@@ -11,7 +12,7 @@ public class FirebaseHelper
     {
         _firebaseClient = new FirebaseClient(firebaseUrl);
     }
-    
+
     public async Task<List<Message>> GetMessagesAsync()
     {
         try
@@ -30,7 +31,7 @@ public class FirebaseHelper
             return new List<Message>();
         }
     }
-    
+
     public async Task SendMessageAsync(Message message)
     {
         try
@@ -43,5 +44,20 @@ public class FirebaseHelper
         {
             Console.WriteLine($"Error sending message: {ex.Message}");
         }
+    }
+
+    public void SubscribeToMessages(Action<Message> onMessageReceived)
+    {
+        _firebaseClient
+            .Child("Messages")
+            .AsObservable<Message>()
+            .Subscribe(d =>
+            {
+                if (d.EventType == FirebaseEventType.InsertOrUpdate)
+                {
+                    onMessageReceived.Invoke(d.Object);
+                    // onMessageReceived(d.Object); // Short-hand
+                }
+            });
     }
 }
