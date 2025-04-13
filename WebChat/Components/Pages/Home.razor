@@ -1,0 +1,60 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using FirebaseChat.Persistence.Firebase
+@inject FirebaseHelper FirebaseHelper
+
+<PageTitle>Global Chat</PageTitle>
+
+<h1>Global Chat</h1>
+
+<div class="chat-container">
+    @foreach (var message in _messages)
+    {
+        <p><strong>@(message.User): @(message.Text)</strong></p>
+    }
+</div>
+
+<div class="input-group mb-3">
+    <input class="form-control"
+           type="text"
+           placeholder="Type your message..."
+           @bind="_newMessage"
+    />
+    <button class="btn btn-primary"
+            @onclick="SendMessage">
+        Send
+    </button>
+</div>
+
+@code {
+
+    private List<Message> _messages = [];
+    private string _newMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadMessages();
+    }
+
+    private async Task LoadMessages()
+    {
+        _messages = await FirebaseHelper.GetMessagesAsync();
+    }
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrWhiteSpace(_newMessage))
+            return;
+
+        var message = new Message
+        {
+            User = "User1",
+            Text = _newMessage
+        };
+        await FirebaseHelper.SendMessageAsync(message);
+        _newMessage = string.Empty;
+        
+        await LoadMessages();
+    }
+
+}

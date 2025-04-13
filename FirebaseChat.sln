@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseChat.Persistence.Firebase", "FirebaseChat.Persistence.Firebase\FirebaseChat.Persistence.Firebase.csproj", "{4E238465-9F3F-4F39-A191-46796CF3D91A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebChat", "WebChat\WebChat.csproj", "{6D130EF5-662B-46FB-A22F-404D9C7DE863}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{85CBE0EE-01B7-4555-8F87-44D3FFCBE9BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{640661D5-8AB3-406A-B187-198BAE7165BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E238465-9F3F-4F39-A191-46796CF3D91A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E238465-9F3F-4F39-A191-46796CF3D91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E238465-9F3F-4F39-A191-46796CF3D91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E238465-9F3F-4F39-A191-46796CF3D91A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D130EF5-662B-46FB-A22F-404D9C7DE863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D130EF5-662B-46FB-A22F-404D9C7DE863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D130EF5-662B-46FB-A22F-404D9C7DE863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D130EF5-662B-46FB-A22F-404D9C7DE863}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6D130EF5-662B-46FB-A22F-404D9C7DE863} = {85CBE0EE-01B7-4555-8F87-44D3FFCBE9BB}
+		{4E238465-9F3F-4F39-A191-46796CF3D91A} = {640661D5-8AB3-406A-B187-198BAE7165BD}
+	EndGlobalSection
+EndGlobal
